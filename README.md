@@ -31,6 +31,20 @@ Doces disponíveis (cada um é um `.scad` em `tools/` que gera um `.stl` em `out
 | Guarda-chuva extrudado puro | `guarda_chuva_extrudado_puro.stl` | Silhueta do logo extrudada 10 mm, sem nenhum ajuste, 48 × 55 mm | 8 |
 | Quadrado com guarda-chuva | `quadrado_guarda_chuva.stl` | Bloco de 40 × 40 × 5 mm, borda arredondada, guarda-chuva cavado no topo | 9 |
 
+| Pão de mel | Abaulado | Reto arredondado | Extrudado puro | Quadrado |
+|:---:|:---:|:---:|:---:|:---:|
+| <img src="img/pao_de_mel_disco_logo.png" width="180"> | <img src="img/guarda_chuva_abaulado.png" width="180"> | <img src="img/guarda_chuva_reto_arredondado.png" width="180"> | <img src="img/guarda_chuva_extrudado_puro.png" width="180"> | <img src="img/quadrado_guarda_chuva.png" width="180"> |
+
+As imagens são renderizadas dos STLs pelo OpenSCAD, em verde. Para gerar de
+novo, na raiz do repositório (troque o nome do doce e, para os de logo cavado, use
+`--camera=0,0,0,45,0,-20,0`, que mostra melhor o logo):
+
+```sh
+echo "color(\"#1a8f55\") import(\"$PWD/out/guarda_chuva_abaulado.stl\");" > /tmp/r.scad
+openscad -o img/guarda_chuva_abaulado.png --imgsize=1000,750 \
+  --camera=0,0,0,38,0,0,0 --viewall --autocenter --colorscheme=Tomorrow /tmp/r.scad
+```
+
 ## Arquivos
 
 | Arquivo | O que é |
@@ -49,6 +63,7 @@ Doces disponíveis (cada um é um `.scad` em `tools/` que gera um `.stl` em `out
 | `tools/quadrado_guarda_chuva.scad` | Bloco quadrado com o guarda-chuva cavado no topo |
 | `out/guarda_chuva_abaulado_altura.png`, `.scad` | Mapa de altura e escala, gerados pelo `.py` (não editar) |
 | `out/*.stl` | Modelos prontos para fatiar e imprimir |
+| `img/*.png` | Imagens renderizadas dos doces, usadas neste README |
 
 Requisitos: Python 3 (só biblioteca padrão), [OpenSCAD](https://openscad.org)
 2021+, [Inkscape](https://inkscape.org) para abrir e medir os SVGs e, para os PNGs, `rsvg-convert` (`brew install librsvg`) e `cwebp`
